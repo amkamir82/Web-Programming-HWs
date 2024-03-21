@@ -13,15 +13,22 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<Product> findAllProducts(){
+    public List<Product> findAllProducts() {
         return productRepository.findAllProducts();
     }
 
-    public boolean addProduct(String title, String brand, int price){
-        return productRepository.createNewProduct(new Product(title,brand,price));
+    public boolean addProduct(String title, String brand, int price) {
+        return productRepository.createNewProduct(new Product(title, brand, price));
     }
 
 
-
+    public Product findProductById(String productId) {
+        for (Product product : productRepository.findAllProducts()) {
+            if (product.getId().equals(productId)) {
+                return product;
+            }
+        }
+        return null;
+    }
 
 }
